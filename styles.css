@@ -1,0 +1,107 @@
+/* Resetando margens e padding de todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Fundo escuro */
+    color: #fff; /* Texto claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Deixa o conteúdo começar no topo */
+    min-height: 100vh; /* Garantir que o conteúdo ocupe toda a altura da tela */
+    overflow-y: auto; /* Permite rolar o conteúdo se ele ultrapassar a tela */
+}
+
+/* Estilo para o cabeçalho */
+header {
+    background-color: #333; /* Cabeçalho escuro */
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+/* Título principal */
+h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 1.2rem; /* Tamanho reduzido, mas legível */
+}
+
+/* Subtítulo */
+h2 {
+    color: #28a745; /* Cor verde para subtítulos */
+    font-size: 1rem; /* Tamanho mais confortável */
+}
+
+/* Estilo do texto explicativo */
+p {
+    color: #bbb;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+/* Container de conteúdo */
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Estilo para cada treino na página principal */
+.treino {
+    background-color: #1e1e1e; /* Fundo escuro para os treinos */
+    color: #fff; /* Texto branco */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Título dos treinos (A, B, C, D) */
+.treino h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff; /* Títulos em branco */
+}
+
+/* Estilo para cada exercício */
+.exercicio {
+    margin-bottom: 15px;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título dos exercícios */
+.exercicio h3 {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Botão */
+.botao {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 4px;
+}
+
+/* Efeito hover do botão */
+.botao:hover {
+    color: #fff;
+    background-color: #218838;
+}
