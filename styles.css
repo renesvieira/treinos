@@ -1,98 +1,73 @@
-/* Estilos para o corpo da página */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Fundo escuro */
-    color: #fff; /* Texto claro */
+/* Reset Básico */
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-start; /* Deixa o conteúdo começar no topo */
-    min-height: 100vh; /* Garantir que o conteúdo ocupe toda a altura da tela */
-    overflow-y: auto; /* Permite rolar o conteúdo se ele ultrapassar a tela */
+    box-sizing: border-box;
 }
 
-/* Estilo para o cabeçalho */
+/* Corpo */
+body {
+    background-color: #121212;  /* Fundo escuro */
+    color: #E0E0E0;  /* Texto claro */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    font-size: 13px; /* Tamanho de fonte ainda menor */
+}
+
+/* Cabeçalho fixo */
 header {
-    background-color: #333; /* Cabeçalho escuro */
-    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    background-color: #1A1A1A; /* Tom de fundo do cabeçalho */
+    padding: 12px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
 }
 
-/* Título principal */
-h1 {
-    color: #fff;
-    margin: 0;
-    font-size: 1.2rem; /* Tamanho reduzido, mas legível */
+header h1 {
+    color: #4CAF50; /* Verde vibrante */
+    font-size: 1.4rem; /* Tamanho reduzido para o título */
+    text-transform: uppercase;
 }
 
-/* Subtítulo */
-h2 {
-    color: #28a745; /* Cor verde para subtítulos */
-    font-size: 1rem; /* Tamanho mais confortável */
-}
-
-/* Estilo do texto explicativo */
-p {
-    color: #bbb;
-    font-size: 0.9rem;
-    margin: 5px 0;
-}
-
-/* Container de conteúdo */
+/* Main Container */
 .container {
-    width: 80%;
-    max-width: 600px;
-    margin-top: 20px;
+    padding-top: 80px; /* Espaço para o cabeçalho fixo */
     text-align: center;
 }
 
-/* Estilo para cada exercício */
-.exercicio {
-    margin-bottom: 15px;
-    background-color: #1e1e1e;
-    padding: 10px;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* Títulos */
+h2 {
+    color: #4CAF50;
+    font-size: 1.0rem; /* Tamanho reduzido para o subtítulo */
+    margin: 20px 0;
 }
 
-/* Título dos exercícios */
+/* Links e Cards de Exercícios */
 .exercicio h3 {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #fff; /* Garantir que o título dos treinos seja branco */
+    background-color: #1F1F1F;
+    color: #E0E0E0;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    font-size: 1rem; /* Tamanho reduzido para os links */
 }
 
-/* Remover a cor azul e mudança de cor ao clicar */
-a {
-    color: #fff; /* Cor branca para o link */
-    text-decoration: none; /* Remover o sublinhado */
-}
-
-/* Remover o estilo do link quando for clicado (foco) */
-a:focus,
-a:hover {
-    color: #fff; /* Cor branca, sem mudança de cor */
-    outline: none; /* Remove a borda de foco */
-}
-
-/* Botão */
-.botao {
-    color: #28a745;
+.exercicio h3 a {
+    color: inherit;
     text-decoration: none;
-    font-weight: bold;
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    border-radius: 4px;
 }
 
-/* Efeito hover do botão */
-.botao:hover {
-    color: #fff;
-    background-color: #218838;
+.exercicio h3:hover {
+    background-color: #4CAF50;
+    transform: translateY(-5px);
+}
+
+.exercicio h3 a:hover {
+    color: #121212;
 }
