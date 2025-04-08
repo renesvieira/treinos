@@ -1,3 +1,4 @@
+
 /* Reset Básico */
 * {
     margin: 0;
@@ -6,12 +7,19 @@
 }
 
 /* Corpo */
-body {
-    background-color: #121212;  /* Fundo escuro */
-    color: #E0E0E0;  /* Texto claro */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
-    line-height: 1.2;
-    font-size: 13px; /* Tamanho de fonte ainda menor */
+    font-size: 13px;
+    background-color: #121212;
+    color: #E0E0E0;
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Cabeçalho fixo */
@@ -20,7 +28,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #1A1A1A; /* Tom de fundo do cabeçalho */
+    background-color: #1A1A1A;
     padding: 12px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -28,34 +36,38 @@ header {
 }
 
 header h1 {
-    color: #4CAF50; /* Verde vibrante */
-    font-size: 1.2rem; /* Tamanho reduzido para o título */
+    color: #4CAF50;
+    font-size: 1.2rem;
     text-transform: uppercase;
 }
 
 /* Main Container */
-.container {
-    padding-top: 80px; /* Espaço para o cabeçalho fixo */
+main.container {
+    flex: 1;
+    padding-top: 80px;
+    padding-bottom: 80px;
     text-align: center;
 }
 
 /* Títulos */
 h2 {
     color: #4CAF50;
-    font-size: 0.8rem; /* Tamanho reduzido para o subtítulo */
+    font-size: 0.8rem;
     margin: 20px 0;
 }
 
-/* Links e Cards de Exercícios */
+/* Cards de Exercício */
 .exercicio h3 {
     background-color: #1F1F1F;
     color: #E0E0E0;
     border-radius: 8px;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px auto;
+    width: 90%;
+    max-width: 400px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, background-color 0.3s ease;
-    font-size: 0.9rem; /* Tamanho reduzido para os links */
+    font-size: 0.9rem;
 }
 
 .exercicio h3 a {
@@ -72,21 +84,21 @@ h2 {
     color: #121212;
 }
 
+/* Botão */
 .botao {
-    background-color: green; /* Cor de fundo verde */
-    color: white; /* Cor do texto branca */
-    padding: 2px 15px; /* Ajuste o padding (espacos internos do botão) */
-    border: none; /* Sem borda */
-    border-radius: 5px; /* Cantos arredondados */
-    text-align: center; /* Alinha o texto no centro */
-    text-decoration: none; /* Remove o sublinhado do link */
-    display: inline-block; /* Faz o link se comportar como um botão */
-    cursor: pointer; /* Mostra o cursor de clique */
-    font-size: 14px; /* Ajusta o tamanho da fonte, se necessário */
-    line-height: 1.5; /* Ajuste o espaçamento vertical entre o texto */
-    margin-top: 20px; /* Adiciona espaço acima do botão */
+    background-color: green;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 40px;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .botao:hover {
-    background-color: darkgreen; /* Cor verde mais escura quando o mouse passa */
+    background-color: darkgreen;
 }
