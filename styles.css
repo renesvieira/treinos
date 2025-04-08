@@ -71,3 +71,22 @@ h2 {
 .exercicio h3 a:hover {
     color: #121212;
 }
+
+.botao {
+    background-color: green; /* Cor de fundo verde */
+    color: white; /* Cor do texto branca */
+    padding: 2px 15px; /* Ajuste o padding (espacos internos do botão) */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Cantos arredondados */
+    text-align: center; /* Alinha o texto no centro */
+    text-decoration: none; /* Remove o sublinhado do link */
+    display: inline-block; /* Faz o link se comportar como um botão */
+    cursor: pointer; /* Mostra o cursor de clique */
+    font-size: 14px; /* Ajusta o tamanho da fonte, se necessário */
+    line-height: 1.5; /* Ajuste o espaçamento vertical entre o texto */
+    margin-top: 20px; /* Adiciona espaço acima do botão */
+}
+
+.botao:hover {
+    background-color: darkgreen; /* Cor verde mais escura quando o mouse passa */
+}
