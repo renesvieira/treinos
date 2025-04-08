@@ -88,15 +88,15 @@ h2 {
 .botao {
     background-color: green;
     color: white;
-    padding: 10px 25px;
+    padding: 6px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin-top: 40px;
-    font-size: 14px;
-    line-height: 1.5;
+    margin-top: 30px;
+    font-size: 12px;
+    line-height: 1.4;
 }
 
 .botao:hover {
