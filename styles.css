@@ -10,7 +10,7 @@ body {
     background-color: #121212;  /* Fundo escuro */
     color: #E0E0E0;  /* Texto claro */
     font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
+    line-height: 1.2;
     font-size: 13px; /* Tamanho de fonte ainda menor */
 }
 
@@ -29,7 +29,7 @@ header {
 
 header h1 {
     color: #4CAF50; /* Verde vibrante */
-    font-size: 1.4rem; /* Tamanho reduzido para o título */
+    font-size: 1.2rem; /* Tamanho reduzido para o título */
     text-transform: uppercase;
 }
 
@@ -42,7 +42,7 @@ header h1 {
 /* Títulos */
 h2 {
     color: #4CAF50;
-    font-size: 1.0rem; /* Tamanho reduzido para o subtítulo */
+    font-size: 0.8rem; /* Tamanho reduzido para o subtítulo */
     margin: 20px 0;
 }
 
@@ -55,7 +55,7 @@ h2 {
     margin: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, background-color 0.3s ease;
-    font-size: 1rem; /* Tamanho reduzido para os links */
+    font-size: 0.9rem; /* Tamanho reduzido para os links */
 }
 
 .exercicio h3 a {
