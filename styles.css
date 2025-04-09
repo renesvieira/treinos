@@ -106,7 +106,7 @@ h2 {
 }
 
 .card-exercicio p {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #B0B0B0;
     text-align: center;
 }
@@ -145,5 +145,44 @@ h2 {
     background-color: #206020; /* Verde escuro */
     color: #fff;
     transition: background-color 0.3s ease;
-  }
-  
+}
+
+.carga {
+    background-color: #222;
+    color: rgb(129, 219, 129);
+    padding: 2px 6px;
+    border-radius: 5px;
+    outline: none;
+    width: 50px; /* Ajuste a largura do campo */
+    text-align: center; /* Centraliza o texto dentro do campo */
+}
+
+.carga:focus {
+    background-color: #333;
+    border: 1px solid #0f0;
+}
+
+.descanso {
+    color: #B0B0B0;
+    margin-right: 5px; /* Espaço entre o descanso e a carga */
+}
+
+/* Mini loader */
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #4CAF50; /* Green */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+/* Animação de rotação do loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
