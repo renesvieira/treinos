@@ -2,10 +2,6 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbyBPMJEmbA7a8OPGJoV5a
 
 // Verifica se está em uma página de treino (A, B, C ou D)
 if (window.location.pathname.includes('treino')) {
-    // Cria e adiciona o loader apenas nas páginas de treino
-    const loader = document.createElement('div');
-    loader.classList.add('loader');
-    document.body.appendChild(loader);
 
     // Marcar exercício como feito (duplo clique)
     document.querySelectorAll('.marcar').forEach((item) => {
@@ -38,50 +34,14 @@ if (window.location.pathname.includes('treino')) {
                         const descansoTexto = descanso ? `${descanso}s | ` : '';
                         p.innerHTML += `<span class="descanso">${descansoTexto}</span>`;
                         p.appendChild(input); // Insere o campo de carga
-
                     }
                 });
             });
-
-            // Remover o loader após 3 segundos
-            setTimeout(() => {
-                loader.style.display = 'none';  // Esconde o loader após 3 segundos
-            }, 3000);  // 3000ms = 3 segundos
         })
         .catch(err => {
             console.error("Erro ao carregar cargas:", err);
-            loader.style.display = 'none';  // Esconde o loader caso haja erro
         });
 
-    // Detectar alteração da carga
-    document.addEventListener('input', (e) => {
-        if (e.target.classList && e.target.classList.contains('carga')) {
-            e.target.dataset.edited = true;
-        }
-    });
-
-    // Salvar nova carga
-    document.addEventListener('blur', (e) => {
-        if (e.target.classList && e.target.classList.contains('carga') && e.target.dataset.edited) {
-            const nome = e.target.dataset.exercicio;
-            const novaCarga = e.target.value;
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: new URLSearchParams({
-                    "exercicio": nome,
-                    "carga": novaCarga
-                })
-            });
-
-            delete e.target.dataset.edited;
-        }
-    }, true);
-
 } else {
-    // Se não estiver em uma página de treino, remove o loader se existir
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.style.display = 'none';
-    }
+    // Não há necessidade de fazer nada aqui, porque o loader foi removido
 }
