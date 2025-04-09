@@ -140,3 +140,10 @@ h2 {
 .botao:hover {
     background-color: darkgreen;
 }
+
+.feito {
+    background-color: #206020; /* Verde escuro */
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
