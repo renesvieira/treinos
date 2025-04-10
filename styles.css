@@ -185,7 +185,7 @@ h2 {
 /* Estilo para as informações do projeto no rodapé */
 .info-projeto-rodape {
     text-align: center; /* Centraliza o texto horizontalmente */
-    padding: 30px 0; /* Adiciona um pouco de espaço acima e abaixo */
+    padding: 100px 0; /* Adiciona um pouco de espaço acima e abaixo */
     color: #636363; /* Cor cinza dos parágrafos dos cards */
     font-size: 0.9rem; /* Mesmo tamanho da fonte dos parágrafos dos cards */
     font-family: 'Roboto', sans-serif; /* Mesma fonte */
