@@ -15,8 +15,11 @@ function removerLoader() {
     }
 }
 
-// Verifica se está em uma página de treino (A, B, C ou D)
-if (window.location.pathname.includes('treino')) {
+// Array com os "pedaços" do pathname que indicam uma página de treino
+const paginasDeTreino = ['treino_a.html', 'treino_b.html', 'treino_c.html', 'treino_d.html'];
+
+// Verifica se a página atual é uma das páginas de treino
+if (paginasDeTreino.some(pagina => window.location.pathname.includes(pagina))) {
 
     // Marcar exercício como feito (duplo clique)
     document.querySelectorAll('.marcar').forEach((item) => {
