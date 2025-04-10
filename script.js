@@ -1,17 +1,25 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyBPMJEmbA7a8OPGJoV5aD2rSXZNG22tI-IScUAKAnN5-kWFNYaddbrmmTA7y54kAp0Sg/exec';
 
-// Função para mostrar o loader
+let loaderDiv; // Referência para o elemento loader
+
+// Função para mostrar o loader dentro da section de treino
 function mostrarLoader() {
-    const loaderDiv = document.createElement('div');
-    loaderDiv.className = 'loader';
-    document.body.appendChild(loaderDiv);
+    const trainingSection = document.querySelector('main.container > section'); // Seleciona a section
+    if (trainingSection) {
+        trainingSection.style.position = 'relative'; // Define a section como container
+        loaderDiv = document.createElement('div');
+        loaderDiv.className = 'loader';
+        trainingSection.appendChild(loaderDiv);
+    }
 }
 
 // Função para remover o loader
 function removerLoader() {
-    const loaderDiv = document.querySelector('.loader');
-    if (loaderDiv) {
-        document.body.removeChild(loaderDiv);
+    const trainingSection = document.querySelector('main.container > section');
+    if (trainingSection && loaderDiv) {
+        trainingSection.removeChild(loaderDiv);
+        trainingSection.style.position = ''; // Remove o relative (opcional)
+        loaderDiv = null;
     }
 }
 
@@ -20,7 +28,6 @@ const paginasDeTreino = ['treino_a.html', 'treino_b.html', 'treino_c.html', 'tre
 
 // Verifica se a página atual é uma das páginas de treino
 if (paginasDeTreino.some(pagina => window.location.pathname.includes(pagina))) {
-
     // Marcar exercício como feito (duplo clique)
     document.querySelectorAll('.marcar').forEach((item) => {
         item.addEventListener('dblclick', () => {
@@ -88,5 +95,4 @@ if (paginasDeTreino.some(pagina => window.location.pathname.includes(pagina))) {
             console.error("Erro ao carregar cargas:", err);
             // Aqui você pode adicionar uma mensagem de erro amigável para o usuário se quiser
         });
-
 }
