@@ -171,7 +171,7 @@ h2 {
 .loader {
     position: absolute; /* Alterado para absolute */
     top: -22px;       /* Ajuste a posição vertical conforme necessário */
-    left: 48%;
+    left: 50%; /* Alterado para 50% para centralizar */
     transform: translateX(-50%); /* Centraliza horizontalmente */
     border: 8px solid #f3f3f3; /* Light grey */
     border-top: 8px solid #4CAF50; /* Green */
@@ -180,6 +180,19 @@ h2 {
     height: 50px;
     animation: spin 2s linear infinite;
     z-index: 12; /* Garante que fique acima de outros elementos */
+}
+
+/* Estilo para as informações do projeto no rodapé */
+.info-projeto-rodape {
+    text-align: center; /* Centraliza o texto horizontalmente */
+    padding: 30px 0; /* Adiciona um pouco de espaço acima e abaixo */
+    color: #636363; /* Cor cinza dos parágrafos dos cards */
+    font-size: 0.9rem; /* Mesmo tamanho da fonte dos parágrafos dos cards */
+    font-family: 'Roboto', sans-serif; /* Mesma fonte */
+}
+
+.info-projeto-rodape p {
+    margin: 5px 0; /* Adiciona um pouco de espaço entre as linhas */
 }
 
 /* Animação de rotação do loader */
