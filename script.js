@@ -108,11 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     clearInterval(interval);
                     button.textContent = originalText;
                     button.disabled = false;
-                    // Adicionando a vibração aqui
-                    if ('vibrate' in navigator) {
-                        navigator.vibrate(500); // Vibra por 500 milissegundos
-                    }
-                    // A parte do som foi removida
+                    // A parte da vibração foi removida
                 } else {
                     button.textContent = duration + 's';
                     duration--;

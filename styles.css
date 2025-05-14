@@ -202,25 +202,29 @@ h2 {
 }
 
 .linha-descanso {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .timer-btn {
-  background-color: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 4px 8px;
-  color: #fff;
-  transition: transform 0.2s ease;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    color: #fff; /* Cor padrão do timer */
+    transition: transform 0.2s ease;
 }
 
 .timer-btn:disabled {
-  color: #999;
+    color: #999; /* Cor cinza quando desabilitado (após terminar) */
+}
+
+.timer-btn:disabled:not(:hover) {
+    color: #fff; /* Mantém branco durante a contagem */
 }
 
 .timer-btn:hover {
-  transform: scale(1.2);
+    transform: scale(1.2);
 }
