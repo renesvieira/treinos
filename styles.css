@@ -200,3 +200,27 @@ h2 {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.linha-descanso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.timer-btn:disabled {
+  color: #999;
+}
+
+.timer-btn:hover {
+  transform: scale(1.2);
+}
