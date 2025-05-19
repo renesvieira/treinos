@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const dataInicio = new Date('2025-04-07'); // Data de início do projeto (AAAA-MM-DD)
+document.addEventListener('DOMContentLoaded', function () {
+    const dataInicio = new Date('2025-04-07');
     const hoje = new Date();
     const semanaElement = document.getElementById('semana-projeto');
 
@@ -28,10 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function removerLoader() {
-        const trainingSection = document.querySelector('main.container > section');
-        if (trainingSection && loaderDiv) {
-            trainingSection.removeChild(loaderDiv);
-            trainingSection.style.position = '';
+        if (loaderDiv) {
+            loaderDiv.remove();
             loaderDiv = null;
         }
     }
@@ -97,23 +95,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    // 🧠 CRONÔMETRO COM BASE NO TEMPO REAL
     document.querySelectorAll('.timer-btn').forEach(button => {
         button.addEventListener('click', () => {
-            let duration = parseInt(button.getAttribute('data-duration'));
+            let duration = parseInt(button.getAttribute('data-duration'), 10);
             if (isNaN(duration)) duration = 90;
-            button.disabled = true;
+
+            const endTime = Date.now() + duration * 1000;
             const originalText = button.textContent;
-            const interval = setInterval(() => {
-                if (duration <= 0) {
-                    clearInterval(interval);
+
+            button.disabled = true;
+
+            function updateTimer() {
+                const remaining = Math.ceil((endTime - Date.now()) / 1000);
+                if (remaining <= 0) {
                     button.textContent = originalText;
                     button.disabled = false;
-                    // A parte da vibração foi removida
                 } else {
-                    button.textContent = duration + 's';
-                    duration--;
+                    button.textContent = `${remaining}s`;
+                    setTimeout(updateTimer, 1000);
                 }
-            }, 1000);
+            }
+
+            updateTimer();
         });
     });
 });
