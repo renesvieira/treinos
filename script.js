@@ -111,6 +111,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (remaining <= 0) {
                     button.textContent = originalText;
                     button.disabled = false;
+                    
+                    // Notificação quando o cronômetro terminar
+                    if (Notification.permission === "granted") {
+                        new Notification("O tempo de descanso acabou!", {
+                            body: "É hora de continuar seu treino!",
+                            icon: "/path/to/icon.png",  // Opcional: ícone para a notificação
+                        });
+                    } else if (Notification.permission !== "denied") {
+                        Notification.requestPermission().then(permission => {
+                            if (permission === "granted") {
+                                new Notification("O tempo de descanso acabou!", {
+                                    body: "É hora de continuar seu treino!",
+                                    icon: "/path/to/icon.png",
+                                });
+                            }
+                        });
+                    }
+
                 } else {
                     button.textContent = `${remaining}s`;
                     setTimeout(updateTimer, 1000);
