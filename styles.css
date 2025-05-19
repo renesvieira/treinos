@@ -218,7 +218,7 @@ h2 {
 }
 
 .timer-btn:disabled {
-    color: #999; /* Cor cinza quando desabilitado (após terminar) */
+    color: #ffffff; /* Cor cinza quando desabilitado (após terminar) */
 }
 
 .timer-btn:disabled:not(:hover) {

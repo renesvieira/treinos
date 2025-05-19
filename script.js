@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             icon: "/path/to/icon.png",  // Opcional: ícone para a notificação
                         });
                     } else if (Notification.permission !== "denied") {
+                        // Solicitar permissão se ainda não foi concedida
                         Notification.requestPermission().then(permission => {
                             if (permission === "granted") {
                                 new Notification("O tempo de descanso acabou!", {
@@ -138,4 +139,9 @@ document.addEventListener('DOMContentLoaded', function () {
             updateTimer();
         });
     });
+
+    // Solicitar permissão de notificação ao carregar a página (se ainda não foi solicitada)
+    if (Notification.permission === "default") {
+        Notification.requestPermission();
+    }
 });
