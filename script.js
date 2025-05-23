@@ -111,20 +111,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (remaining <= 0) {
                     button.textContent = originalText;
                     button.disabled = false;
-                    
+
                     // Notificação quando o cronômetro terminar
                     if (Notification.permission === "granted") {
                         new Notification("O tempo de descanso acabou!", {
                             body: "É hora de continuar seu treino!",
-                            icon: "/path/to/icon.png",  // Opcional: ícone para a notificação
+                            // icon: "/path/to/icon.png",  // Removido ou corrigido
                         });
                     } else if (Notification.permission !== "denied") {
                         // Solicitar permissão se ainda não foi concedida
+                        console.log('Solicitando permissão de notificação dentro do timer...'); // Log adicional
                         Notification.requestPermission().then(permission => {
                             if (permission === "granted") {
                                 new Notification("O tempo de descanso acabou!", {
                                     body: "É hora de continuar seu treino!",
-                                    icon: "/path/to/icon.png",
+                                    // icon: "/path/to/icon.png", // Removido ou corrigido
                                 });
                             }
                         });
@@ -141,7 +142,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Solicitar permissão de notificação ao carregar a página (se ainda não foi solicitada)
-    if (Notification.permission === "default") {
-        Notification.requestPermission();
+    // Movido para uma função separada para melhor controle
+    function requestNotificationPermission() {
+        if (Notification.permission === "default") {
+            console.log('Tentando solicitar permissão de notificação na inicialização...'); // Log para depuração
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    console.log('Permissão de notificação concedida!');
+                } else if (permission === "denied") {
+                    console.warn('Permissão de notificação negada pelo usuário.');
+                }
+            }).catch(error => {
+                console.error('Erro ao solicitar permissão de notificação:', error);
+            });
+        } else {
+            console.log('Permissão de notificação já é:', Notification.permission);
+        }
     }
+
+    // Chama a função de solicitação de permissão
+    requestNotificationPermission();
+
 });
