@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             const diffEmMilissegundos = hoje - dataInicio;
             const diffEmDias = Math.ceil(diffEmMilissegundos / (1000 * 60 * 60 * 24));
-            const semanaAtual = Math.ceil(diffEmDias / 7);
+            const semanaAtual = Math.ceil(diffEmMilissegundos / 7);
             semanaElement.textContent = `SEMANA ${semanaAtual}`;
         }
     }
 
+    // URL da sua planilha Google Sheets (Google Apps Script)
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyBPMJEmbA7a8OPGJoV5aD2rSXZNG22tI-IScUAKAnN5-kWFNYaddbrmbTA7y54kAp0Sg/exec';
     let loaderDiv;
 
@@ -37,12 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const paginasDeTreino = ['treino_a.html', 'treino_b.html', 'treino_c.html', 'treino_d.html'];
 
     if (paginasDeTreino.some(pagina => window.location.pathname.includes(pagina))) {
+        // Funcionalidade de marcar exercício como feito
         document.querySelectorAll('.marcar').forEach((item) => {
             item.addEventListener('dblclick', () => {
                 item.classList.toggle('feito');
             });
         });
 
+        // Carregar e exibir cargas da planilha
         mostrarLoader();
         fetch(scriptURL)
             .then(response => response.json())
@@ -51,15 +54,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.forEach(entry => {
                     const nome = entry.exercicio.trim();
                     const carga = entry.carga;
-                    const descanso = entry.descanso || '';
+                    const descanso = entry.descanso || ''; // Certifica que 'descanso' existe
 
                     document.querySelectorAll('.card-exercicio').forEach(card => {
                         const titulo = card.querySelector('h3').innerText.trim();
                         if (titulo === nome) {
                             const p = card.querySelector('p');
+                            
+                            // Cria o input de carga
                             const input = document.createElement('input');
                             input.className = 'carga';
-                            input.value = carga || '';
+                            input.type = 'text'; // Define o tipo para texto ou number
+                            input.placeholder = 'kg'; // Placeholder para indicar kg
+                            input.value = carga || ''; // Preenche com a carga existente
                             input.setAttribute('data-exercicio', nome);
 
                             input.addEventListener('blur', (event) => {
@@ -82,8 +89,11 @@ document.addEventListener('DOMContentLoaded', function () {
                                 });
                             });
 
-                            const descansoTexto = descanso ? `${descanso}s | ` : '';
-                            p.innerHTML += `<span class="descanso">${descansoTexto}</span>`;
+                            // Atualiza o parágrafo com as informações da planilha e o input
+                            // Remova o conteúdo antigo de 'p' antes de adicionar o novo, se necessário
+                            // Ou garanta que só está adicionando uma vez.
+                            p.innerHTML = `${p.innerText.split('|')[0].trim()} | `; // Mantém a parte de séries/reps
+                            p.innerHTML += `<span class="descanso">${descanso ? `${descanso}s | ` : ''}</span>`;
                             p.appendChild(input);
                         }
                     });
@@ -92,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(err => {
                 removerLoader();
                 console.error("Erro ao carregar cargas:", err);
+                // Você pode adicionar um elemento para mostrar um erro ao usuário aqui
             });
     }
 
@@ -99,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.timer-btn').forEach(button => {
         button.addEventListener('click', () => {
             // Tente solicitar permissão de forma mais direta e imediata no clique
-            // Isso pode ajudar no Safari/iOS que exige uma interação explícita.
             if (Notification.permission === "default") {
                 console.log('Solicitando permissão de notificação (tentativa direta no clique)...');
                 Notification.requestPermission(); // Apenas solicite, sem then/catch inicial
@@ -121,11 +131,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         button.disabled = false;
 
                         // Notificação quando o cronômetro terminar
-                        // Só dispara se a permissão foi explicitamente concedida
                         if (shouldNotify && Notification.permission === "granted") {
                             new Notification("O tempo de descanso acabou!", {
                                 body: "É hora de continuar seu treino!",
-                                // icon: "/caminho/para/seu/icone.png", // Mantenha comentado ou use um caminho real, ex: '/favicon.ico'
+                                // icon: "/icons/icon-192x192.png", // Use o ícone real se tiver um
+                                vibrate: [200, 100, 200] // Adiciona vibração
                             });
                         }
 
@@ -137,15 +147,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateTimer();
             };
 
-            // Inicia o timer e a notificação.
-            // shouldNotify será true se a permissão já foi concedida ou se ainda está em "default"
-            // (a solicitação já foi feita acima). Se for "denied", shouldNotify será false.
             startActualTimer(Notification.permission === "granted" || Notification.permission === "default");
-
         });
     });
-
-    // Removido a solicitação de permissão no DOMContentLoaded, agora é no clique do botão.
 
     // Código para registrar o Service Worker (Adicionado para PWA)
     if ('serviceWorker' in navigator) {
