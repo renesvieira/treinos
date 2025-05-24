@@ -112,11 +112,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     button.textContent = originalText;
                     button.disabled = false;
                     
-                    // Notificação quando o cronômetro terminar
+                    // Vibração e Notificação quando o cronômetro terminar
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms, vibra por 200ms
+                    }
+
                     if (Notification.permission === "granted") {
                         new Notification("O tempo de descanso acabou!", {
                             body: "É hora de continuar seu treino!",
-                            icon: "/path/to/icon.png",  // Opcional: ícone para a notificação
+                            icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone
                         });
                     } else if (Notification.permission !== "denied") {
                         // Solicitar permissão se ainda não foi concedida
@@ -124,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (permission === "granted") {
                                 new Notification("O tempo de descanso acabou!", {
                                     body: "É hora de continuar seu treino!",
-                                    icon: "/path/to/icon.png",
+                                    icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone
                                 });
                             }
                         });
@@ -145,3 +149,18 @@ document.addEventListener('DOMContentLoaded', function () {
         Notification.requestPermission();
     }
 });
+
+
+
+// Registrar Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/treinos-main/sw.js', { scope: '/treinos-main/' }) // Ajuste o caminho e escopo se necessário
+      .then(registration => {
+        console.log('ServiceWorker registrado com sucesso com escopo: ', registration.scope);
+      })
+      .catch(error => {
+        console.log('Falha no registro do ServiceWorker: ', error);
+      });
+  });
+}
