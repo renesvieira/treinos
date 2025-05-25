@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     button.disabled = false;
                     
                     // Vibração e Notificação quando o cronômetro terminar
+                    // No iOS (Safari), a vibração e notificações em segundo plano têm suporte limitado
                     if ('vibrate' in navigator) {
                         navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms, vibra por 200ms
                     }
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (Notification.permission === "granted") {
                         new Notification("O tempo de descanso acabou!", {
                             body: "É hora de continuar seu treino!",
-                            icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone
+                            icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
                         });
                     } else if (Notification.permission !== "denied") {
                         // Solicitar permissão se ainda não foi concedida
@@ -128,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (permission === "granted") {
                                 new Notification("O tempo de descanso acabou!", {
                                     body: "É hora de continuar seu treino!",
-                                    icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone
+                                    icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
                                 });
                             }
                         });
@@ -150,12 +151,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-
 // Registrar Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/treinos-main/sw.js', { scope: '/treinos-main/' }) // Ajuste o caminho e escopo se necessário
+    // Ajuste o caminho e escopo para o GitHub Pages
+    navigator.serviceWorker.register('/treinos-main/sw.js', { scope: '/treinos-main/' }) 
       .then(registration => {
         console.log('ServiceWorker registrado com sucesso com escopo: ', registration.scope);
       })
