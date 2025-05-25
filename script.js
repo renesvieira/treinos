@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (Notification.permission === "granted") {
                         new Notification("O tempo de descanso acabou!", {
                             body: "É hora de continuar seu treino!",
-                            icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
+                            icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
                         });
                     } else if (Notification.permission !== "denied") {
                         // Solicitar permissão se ainda não foi concedida
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (permission === "granted") {
                                 new Notification("O tempo de descanso acabou!", {
                                     body: "É hora de continuar seu treino!",
-                                    icon: "/treinos-main/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
+                                    icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
                                 });
                             }
                         });
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     // Ajuste o caminho e escopo para o GitHub Pages
-    navigator.serviceWorker.register('/treinos-main/sw.js', { scope: '/treinos-main/' }) 
+    navigator.serviceWorker.register('/treinos/sw.js', { scope: '/treinos/' }) 
       .then(registration => {
         console.log('ServiceWorker registrado com sucesso com escopo: ', registration.scope);
       })
