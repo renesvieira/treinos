@@ -1,5 +1,6 @@
-console.log("Script.js carregado e em execução!");
 document.addEventListener('DOMContentLoaded', function () {
+    console.log("Script.js carregado e em execução!"); // Manter esta linha
+
     const dataInicio = new Date('2025-04-07');
     const hoje = new Date();
     const semanaElement = document.getElementById('semana-projeto');
@@ -107,33 +108,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
             button.disabled = true;
 
+            // Variável para armazenar se a permissão foi concedida neste clique
+            let notificationAllowedInThisSession = false;
+
+            // *** NOVA LÓGICA: Solicitar permissão IMEDIATAMENTE no clique ***
+            if (Notification.permission === "default") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        notificationAllowedInThisSession = true;
+                        console.log("Permissão de notificação concedida no clique do cronômetro.");
+                    } else {
+                        console.log("Permissão de notificação negada ou não concedida no clique do cronômetro.");
+                    }
+                }).catch(e => {
+                    console.error("Erro ao solicitar permissão de notificação:", e);
+                });
+            } else if (Notification.permission === "granted") {
+                notificationAllowedInThisSession = true; // Já concedida anteriormente
+            }
+
             function updateTimer() {
                 const remaining = Math.ceil((endTime - Date.now()) / 1000);
                 if (remaining <= 0) {
                     button.textContent = originalText;
                     button.disabled = false;
                     
-                    // Vibração e Notificação quando o cronômetro terminar
-                    // No iOS (Safari), a vibração e notificações em segundo plano têm suporte limitado
+                    // Vibração quando o cronômetro terminar
                     if ('vibrate' in navigator) {
-                        navigator.vibrate([200, 100, 200]); // Vibra por 200ms, pausa 100ms, vibra por 200ms
+                        navigator.vibrate([200, 100, 200]);
                     }
 
-                    if (Notification.permission === "granted") {
+                    // Notificação: Agora, só verifica se a permissão foi concedida (seja no clique ou antes)
+                    if (Notification.permission === "granted" || notificationAllowedInThisSession) {
                         new Notification("O tempo de descanso acabou!", {
                             body: "É hora de continuar seu treino!",
-                            icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido para /treinos/
+                            icon: "/treinos/icons/icon-192x192.png",
                         });
-                    } else if (Notification.permission !== "denied") {
-                        // Solicitar permissão se ainda não foi concedida (apenas após interação do usuário)
-                        Notification.requestPermission().then(permission => {
-                            if (permission === "granted") {
-                                new Notification("O tempo de descanso acabou!", {
-                                    body: "É hora de continuar seu treino!",
-                                    icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido para /treinos/
-                                });
-                            }
-                        });
+                    } else {
+                        console.log("Notificação não enviada: Permissão não concedida.");
                     }
 
                 } else {
