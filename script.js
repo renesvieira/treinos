@@ -1,3 +1,4 @@
+console.log("Script.js carregado e em execução!");
 document.addEventListener('DOMContentLoaded', function () {
     const dataInicio = new Date('2025-04-07');
     const hoje = new Date();
