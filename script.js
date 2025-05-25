@@ -121,15 +121,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (Notification.permission === "granted") {
                         new Notification("O tempo de descanso acabou!", {
                             body: "É hora de continuar seu treino!",
-                            icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
+                            icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido para /treinos/
                         });
                     } else if (Notification.permission !== "denied") {
-                        // Solicitar permissão se ainda não foi concedida
+                        // Solicitar permissão se ainda não foi concedida (apenas após interação do usuário)
                         Notification.requestPermission().then(permission => {
                             if (permission === "granted") {
                                 new Notification("O tempo de descanso acabou!", {
                                     body: "É hora de continuar seu treino!",
-                                    icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido do ícone para GitHub Pages
+                                    icon: "/treinos/icons/icon-192x192.png", // Caminho corrigido para /treinos/
                                 });
                             }
                         });
@@ -145,17 +145,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Solicitar permissão de notificação ao carregar a página (se ainda não foi solicitada)
-    if (Notification.permission === "default") {
-        Notification.requestPermission();
-    }
+    // A linha abaixo foi removida para que a solicitação de permissão ocorra apenas no clique do botão.
+    // if (Notification.permission === "default") {
+    //     Notification.requestPermission();
+    // }
 });
 
 // Registrar Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    // Ajuste o caminho e escopo para o GitHub Pages
-    navigator.serviceWorker.register('/treinos/sw.js', { scope: '/treinos/' }) 
+    // Ajuste o caminho e escopo para o GitHub Pages (agora /treinos/)
+    navigator.serviceWorker.register('/treinos/sw.js', { scope: '/treinos/' })
       .then(registration => {
         console.log('ServiceWorker registrado com sucesso com escopo: ', registration.scope);
       })
