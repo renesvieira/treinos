@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyBPMJEmbA7a8OPGJoV5aD2rSXZNG22tI-IScUAKAnN5-kWFNYaddbrmmTA7y54kAp0Sg/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby0m6qNI-MLcaqQ70ZgVt9b06qCb6IGItO4pnrOS1_hfm5uYxTE3XYnKvwlvCrVqG-q4g/exec';
     let loaderDiv;
 
     function mostrarLoader() {
