@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log("Script.js carregado e em execução!"); // Manter esta linha
 
-    const dataInicio = new Date('2025-04-07');
+    const dataInicio = new Date('2025-10-20');
     const hoje = new Date();
     const semanaElement = document.getElementById('semana-projeto');
 
